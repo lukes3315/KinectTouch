@@ -1,0 +1,108 @@
+rm -f main.o Mutex.o MyFreenectDevice.o Button.o Finger.o
+rm -f *~
+rm -f kinect
+g++    -c -o main.o main.cpp
+g++    -c -o Mutex.o Mutex.cpp
+g++    -c -o MyFreenectDevice.o MyFreenectDevice.cpp
+g++    -c -o Button.o Button.cpp
+g++    -c -o Finger.o Finger.cpp
+g++ -lfreenect -lfreenect_sync -W -Wall -Wextra -lsfml-window -lsfml-graphics -lSDL -lGL -lGLU main.cpp Mutex.cpp MyFreenectDevice.cpp Button.cpp Finger.cpp -o kinect
+/tmp/cc4tgGeq.o: In function `drawPixel(int, int, SDL_Surface*, SDL_Surface*, SDL_Rect, int, int, int)':
+main.cpp:(.text+0x2f): undefined reference to `SDL_MapRGB'
+main.cpp:(.text+0x46): undefined reference to `SDL_FillRect'
+main.cpp:(.text+0x75): undefined reference to `SDL_UpperBlit'
+/tmp/cc4tgGeq.o: In function `main':
+main.cpp:(.text+0x183): undefined reference to `sf::VideoMode::VideoMode(unsigned int, unsigned int, unsigned int)'
+main.cpp:(.text+0x1c8): undefined reference to `sf::Window::Window(sf::VideoMode, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long, sf::WindowSettings const&)'
+main.cpp:(.text+0x1ec): undefined reference to `sf::Clock::Clock()'
+main.cpp:(.text+0x245): undefined reference to `SDL_CreateRGBSurface'
+main.cpp:(.text+0x28c): undefined reference to `SDL_CreateRGBSurface'
+main.cpp:(.text+0x29b): undefined reference to `SDL_Init'
+main.cpp:(.text+0x2bf): undefined reference to `SDL_SetVideoMode'
+main.cpp:(.text+0x2ff): undefined reference to `glClearDepth'
+main.cpp:(.text+0x327): undefined reference to `glClearColor'
+main.cpp:(.text+0x333): undefined reference to `glEnable'
+main.cpp:(.text+0x33f): undefined reference to `glDepthMask'
+main.cpp:(.text+0x34b): undefined reference to `glMatrixMode'
+main.cpp:(.text+0x350): undefined reference to `glLoadIdentity'
+main.cpp:(.text+0x374): undefined reference to `gluPerspective'
+main.cpp:(.text+0x38a): undefined reference to `sf::Window::SetActive(bool) const'
+main.cpp:(.text+0x3f6): undefined reference to `glClear'
+main.cpp:(.text+0x402): undefined reference to `glMatrixMode'
+main.cpp:(.text+0x407): undefined reference to `glLoadIdentity'
+main.cpp:(.text+0x422): undefined reference to `glTranslatef'
+main.cpp:(.text+0x58a): undefined reference to `sf::Window::GetEvent(sf::Event&)'
+main.cpp:(.text+0x5f2): undefined reference to `glRotated'
+main.cpp:(.text+0x5fe): undefined reference to `glBegin'
+main.cpp:(.text+0x60b): undefined reference to `glPointSize'
+main.cpp:(.text+0x638): undefined reference to `SDL_MapRGB'
+main.cpp:(.text+0x64f): undefined reference to `SDL_FillRect'
+main.cpp:(.text+0xafb): undefined reference to `glColor3f'
+main.cpp:(.text+0xb4b): undefined reference to `glVertex3f'
+main.cpp:(.text+0xc94): undefined reference to `glEnd'
+main.cpp:(.text+0xcc0): undefined reference to `SDL_Flip'
+main.cpp:(.text+0xcce): undefined reference to `sf::Window::Display()'
+main.cpp:(.text+0xcd3): undefined reference to `glFlush'
+main.cpp:(.text+0xce1): undefined reference to `sf::Window::IsOpened() const'
+main.cpp:(.text+0xcfc): undefined reference to `sf::Window::~Window()'
+main.cpp:(.text+0xd2c): undefined reference to `sf::Window::~Window()'
+main.cpp:(.text+0xd67): undefined reference to `sf::Window::~Window()'
+/tmp/cc4tgGeq.o: In function `Freenect::FreenectDevice::startVideo()':
+main.cpp:(.text._ZN8Freenect14FreenectDevice10startVideoEv[Freenect::FreenectDevice::startVideo()]+0x12): undefined reference to `freenect_start_video'
+/tmp/cc4tgGeq.o: In function `Freenect::FreenectDevice::stopVideo()':
+main.cpp:(.text._ZN8Freenect14FreenectDevice9stopVideoEv[Freenect::FreenectDevice::stopVideo()]+0x12): undefined reference to `freenect_stop_video'
+/tmp/cc4tgGeq.o: In function `Freenect::FreenectDevice::startDepth()':
+main.cpp:(.text._ZN8Freenect14FreenectDevice10startDepthEv[Freenect::FreenectDevice::startDepth()]+0x12): undefined reference to `freenect_start_depth'
+/tmp/cc4tgGeq.o: In function `Freenect::FreenectDevice::stopDepth()':
+main.cpp:(.text._ZN8Freenect14FreenectDevice9stopDepthEv[Freenect::FreenectDevice::stopDepth()]+0x12): undefined reference to `freenect_stop_depth'
+/tmp/cc4tgGeq.o: In function `Freenect::FreenectDevice::setTiltDegrees(double)':
+main.cpp:(.text._ZN8Freenect14FreenectDevice14setTiltDegreesEd[Freenect::FreenectDevice::setTiltDegrees(double)]+0x25): undefined reference to `freenect_set_tilt_degs'
+/tmp/cc4tgGeq.o: In function `Freenect::FreenectDevice::setVideoFormat(freenect_video_format)':
+main.cpp:(.text._ZN8Freenect14FreenectDevice14setVideoFormatE21freenect_video_format[Freenect::FreenectDevice::setVideoFormat(freenect_video_format)]+0x21): undefined reference to `freenect_stop_video'
+main.cpp:(.text._ZN8Freenect14FreenectDevice14setVideoFormatE21freenect_video_format[Freenect::FreenectDevice::setVideoFormat(freenect_video_format)]+0x3b): undefined reference to `freenect_find_video_mode'
+main.cpp:(.text._ZN8Freenect14FreenectDevice14setVideoFormatE21freenect_video_format[Freenect::FreenectDevice::setVideoFormat(freenect_video_format)]+0xef): undefined reference to `freenect_set_video_mode'
+main.cpp:(.text._ZN8Freenect14FreenectDevice14setVideoFormatE21freenect_video_format[Freenect::FreenectDevice::setVideoFormat(freenect_video_format)]+0x175): undefined reference to `freenect_start_video'
+/tmp/cc4tgGeq.o: In function `Freenect::Freenect::Freenect()':
+main.cpp:(.text._ZN8Freenect8FreenectC2Ev[_ZN8Freenect8FreenectC5Ev]+0x37): undefined reference to `freenect_init'
+main.cpp:(.text._ZN8Freenect8FreenectC2Ev[_ZN8Freenect8FreenectC5Ev]+0xc4): undefined reference to `freenect_select_subdevices'
+main.cpp:(.text._ZN8Freenect8FreenectC2Ev[_ZN8Freenect8FreenectC5Ev]+0xe9): undefined reference to `pthread_create'
+/tmp/cc4tgGeq.o: In function `Freenect::Freenect::~Freenect()':
+main.cpp:(.text._ZN8Freenect8FreenectD2Ev[_ZN8Freenect8FreenectD5Ev]+0x91): undefined reference to `pthread_join'
+main.cpp:(.text._ZN8Freenect8FreenectD2Ev[_ZN8Freenect8FreenectD5Ev]+0x9e): undefined reference to `freenect_shutdown'
+/tmp/cc4tgGeq.o: In function `Freenect::Freenect::operator()()':
+main.cpp:(.text._ZN8Freenect8FreenectclEv[Freenect::Freenect::operator()()]+0x16): undefined reference to `freenect_process_events'
+/tmp/ccGlkFuM.o: In function `MyFreenectDevice::MyFreenectDevice(_freenect_context*, int)':
+MyFreenectDevice.cpp:(.text+0x52): undefined reference to `freenect_find_video_mode'
+MyFreenectDevice.cpp:(.text+0xad): undefined reference to `freenect_find_video_mode'
+/tmp/ccGlkFuM.o: In function `MyFreenectDevice::calibrate()':
+MyFreenectDevice.cpp:(.text+0x727): undefined reference to `glRotated'
+MyFreenectDevice.cpp:(.text+0x733): undefined reference to `glBegin'
+MyFreenectDevice.cpp:(.text+0x747): undefined reference to `glPointSize'
+MyFreenectDevice.cpp:(.text+0x79b): undefined reference to `glColor3f'
+MyFreenectDevice.cpp:(.text+0x886): undefined reference to `glColor3f'
+MyFreenectDevice.cpp:(.text+0x8c3): undefined reference to `glVertex3f'
+MyFreenectDevice.cpp:(.text+0x9e9): undefined reference to `glColor3f'
+MyFreenectDevice.cpp:(.text+0xa06): undefined reference to `glVertex3f'
+MyFreenectDevice.cpp:(.text+0xa51): undefined reference to `glEnd'
+/tmp/ccGlkFuM.o: In function `Freenect::FreenectDevice::FreenectDevice(_freenect_context*, int)':
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceC2EP17_freenect_contexti[_ZN8Freenect14FreenectDeviceC5EP17_freenect_contexti]+0x34): undefined reference to `freenect_open_device'
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceC2EP17_freenect_contexti[_ZN8Freenect14FreenectDeviceC5EP17_freenect_contexti]+0xc1): undefined reference to `freenect_set_user'
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceC2EP17_freenect_contexti[_ZN8Freenect14FreenectDeviceC5EP17_freenect_contexti]+0xdc): undefined reference to `freenect_find_video_mode'
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceC2EP17_freenect_contexti[_ZN8Freenect14FreenectDeviceC5EP17_freenect_contexti]+0x117): undefined reference to `freenect_set_video_mode'
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceC2EP17_freenect_contexti[_ZN8Freenect14FreenectDeviceC5EP17_freenect_contexti]+0x132): undefined reference to `freenect_find_depth_mode'
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceC2EP17_freenect_contexti[_ZN8Freenect14FreenectDeviceC5EP17_freenect_contexti]+0x16d): undefined reference to `freenect_set_depth_mode'
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceC2EP17_freenect_contexti[_ZN8Freenect14FreenectDeviceC5EP17_freenect_contexti]+0x183): undefined reference to `freenect_set_depth_callback'
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceC2EP17_freenect_contexti[_ZN8Freenect14FreenectDeviceC5EP17_freenect_contexti]+0x199): undefined reference to `freenect_set_video_callback'
+/tmp/ccGlkFuM.o: In function `Freenect::FreenectDevice::~FreenectDevice()':
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDeviceD2Ev[_ZN8Freenect14FreenectDeviceD5Ev]+0x1a): undefined reference to `freenect_close_device'
+/tmp/ccGlkFuM.o: In function `Freenect::FreenectDevice::getVideoBufferSize()':
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDevice18getVideoBufferSizeEv[Freenect::FreenectDevice::getVideoBufferSize()]+0x2d): undefined reference to `freenect_find_video_mode'
+/tmp/ccGlkFuM.o: In function `Freenect::FreenectDevice::freenect_depth_callback(_freenect_device*, void*, unsigned int)':
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDevice23freenect_depth_callbackEP16_freenect_devicePvj[Freenect::FreenectDevice::freenect_depth_callback(_freenect_device*, void*, unsigned int)]+0xd): undefined reference to `freenect_get_user'
+/tmp/ccGlkFuM.o: In function `Freenect::FreenectDevice::freenect_video_callback(_freenect_device*, void*, unsigned int)':
+MyFreenectDevice.cpp:(.text._ZN8Freenect14FreenectDevice23freenect_video_callbackEP16_freenect_devicePvj[Freenect::FreenectDevice::freenect_video_callback(_freenect_device*, void*, unsigned int)]+0xd): undefined reference to `freenect_get_user'
+/tmp/cckgRHsY.o: In function `Button::draw(coords*)':
+Button.cpp:(.text+0x9b): undefined reference to `glColor3f'
+Button.cpp:(.text+0xd0): undefined reference to `glVertex3f'
+collect2: ld returned 1 exit status
+make: *** [kinect] Error 1

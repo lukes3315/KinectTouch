@@ -1,0 +1,45 @@
+
+#include        	<QtCore/QObject>
+#include        	<QtCore/QList>
+#include        	<QtCore/QTimer>
+#include        	<QtGui/QApplication>
+#include        	<QtGui/QPushButton>
+#include        	<QtGui/QLineEdit>
+#include        	<QtGui/QTextEdit>
+#include        	<QtGui/QGridLayout>
+#include        	<QtGui/QLabel>
+#include       		<QtGui/QWidget>
+#include       		<QtGui/QTabWidget>
+#include        	<QtGui/QTreeWidget>
+#include        	<QtGui/QProgressBar>
+#include        	<QtGui/QMessageBox>
+#include        	<string>
+#include        	<iostream>
+#include		"Button.hpp"
+#include		<list>
+
+
+class           	Keyboard : public QWidget
+{
+  Q_OBJECT
+
+private:
+
+  QWidget		*fenetre;
+
+  QGridLayout		*mainLayout;
+  QTextEdit		*texte;
+  QLineEdit		*content;
+  std::list<Button*>	list;
+  bool			MAJ;
+
+public :
+
+  Keyboard();
+  ~Keyboard(){};
+  void findButton(int x, int y);
+
+
+public slots:
+  void print(const QString&);
+};

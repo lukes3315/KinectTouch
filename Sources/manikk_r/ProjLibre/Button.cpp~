@@ -1,0 +1,75 @@
+
+#include                <sys/types.h>
+#include                <sys/socket.h>
+#include                <netdb.h>
+#include                <sstream>
+#include                <cstdio>
+
+
+#include "Button.hpp"
+
+
+Button::Button(QString car,int x, int y, QWidget* parent)
+{
+  this->c = car;
+  std::cout<<"["<<c.toStdString()<<"]"<<std::endl;
+  this->_x = x;
+  this-> _y = y;
+  this->_h = 60;
+  bouton = new QPushButton(car, parent); 
+  bouton->move(x, y);
+  if (car == " ")
+    {
+      bouton->resize(300, 60);
+      this->_xmax = x + 300;
+    }
+  else if (car == "MAJ" || car == "baksp" || car == "enter")
+    {
+      bouton->resize(90, 60);
+      this->_xmax = x + 90;
+      if (car == "MAJ")
+	bouton->setIcon(QIcon("fleche_haut.jpg"));
+      else
+	bouton->setIcon(QIcon("fleche_gauche.jpg"));
+    }
+  else
+    {
+      bouton->resize(60, 60);
+      this->_xmax = x + _h;
+    }
+}
+
+Button::~Button()
+{
+
+}
+
+QString Button::getC() const
+{
+  return this->c;
+}
+
+QPushButton *Button::getBouton() const
+{
+  return bouton;
+}
+
+int Button::getX() const
+{
+  return _x;
+}
+
+int Button::getY() const
+{
+  return _y;
+}
+
+int Button::getH() const
+{
+  return _h;
+}
+
+int Button::getXmax() const
+{
+  return _xmax;
+}

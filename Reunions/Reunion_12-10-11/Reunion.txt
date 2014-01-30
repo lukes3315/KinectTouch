@@ -1,0 +1,30 @@
+Reunion du 12-10-2011
+
+Ryan :
+     - Clavier ok, fait en qt (manque zone de saisie).
+     - Amelioration pour la prochaine fois : optimizer le code(c'est des gros pate),
+       		    	    	      	   amelioration du design,
+					   rajouter des touches,
+					   lors du lancement donner choix a utilisateur de la langue
+					   sauvegarde de cette valeur dans un fichier pour pas avoir a demander a chaque fois.
+     - Pour la semaine prochaine avoir fini les ameliorations et commencer l'integration avec detections des doigts
+
+Stephen :
+	- Drag and drop fonctionnelle sur un element.
+	- Pour la prochaine fois : gerer si il y a deux elements sur un objet le faire s'agrandir,
+	ou si 2 objets restent un certain temps sur l'objet afficher un menu.
+	!!! IMPORTANT !!- Pour la prochaine fois d'apres commencer l'integration. 
+
+Lucas :
+      - Pour la prochaine fois definir la reconnaissance gestuelle.
+      - Travailler avec Ryan et Stephen sur l'integration de toutes les parties.
+
+Toutes les deadlines ont ete respecte sauf ryan qui n'a pas implemente une zone de saisie. 
+
+Il faut savoir pour quand on pourrait avoir un trepier pour la kinect + le pico-proj.
+
+A partir de maintenant definition des reunions tous les mercredi a 13h00,
+il y a trop de monde en cafet a 14h00.
+
+Prochaine Reunion :
+Mercredi 19 Octobre a 13h.

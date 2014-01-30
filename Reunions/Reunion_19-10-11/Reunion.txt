@@ -1,0 +1,39 @@
+Reunion du 19 octobre 2011 pour le projet libre
+
+
+Ryan :
+     - Amelioration faites sauf pour le design.
+     - Peut-etre rdv chez qqun pour commencer l'integration 
+     toucher/interface clavier samedi sinon a commencer Lundi.
+     - Chargement de la langue du clavier faites manuellement pour l'instant
+     l'affichage sera fait lors de l'integration du code.
+     - Travailler sur l'implementation d'envoi de signaux a d'autres applications
+     (beaucoup de recherche.). But final -> avoir un clavier qui marche dans toutes les applications.
+     - Changement de l'implementation des bouttons de gridlayout a coordonnees x,y
+
+Stephen :
+	- Gerer 2 elements sur 1 objet fonctionnelle et decalage des objets fonctionnel
+	- A la place de faire de l'integration pour l'instant s'occuper d'un system 
+	de fichier visuel adapter a une interface tactile pour l'instant monotouch.
+
+Lucas :
+      - pas de reconnaissance gestuel, a la place amelioration de l'algo de detection des doigts.
+      - Samedi travail ac ryan sur l'integration ac le clavier.
+
+Resume :
+       Deadline 12 Novembre : avoir un programme qui regroupe clavier, drag & drop + system de fichier et detection des doigts qui marchent en parallele.
+       
+
+
+-------------------------
+|			|
+|			|
+|	Ecran		|
+|			|
+|			|
+|			|
+------------------------
+|			|
+|	Clavier		|
+|			|
+------------------------

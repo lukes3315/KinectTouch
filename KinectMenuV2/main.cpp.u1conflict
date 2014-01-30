@@ -1,0 +1,90 @@
+//
+//  main.cpp
+//  test
+//
+//  Created by Lucas McKenna on 1/27/12.
+//  Copyright 2012 Epitech. All rights reserved.
+//
+
+#include <iostream>
+#include "CamStreamer.h"
+#include "BlobDetector.h"
+#include "ConvexHullManager.h"
+#include "MyFreenectDevice.hpp"
+#include "FingerDetector.h"
+
+CvPoint operator-(CvPoint p1, CvPoint p2)
+{
+  CvPoint p3;
+
+  p3.x = p1.x - p2.x;
+  p3.y = p1.y - p2.y;
+  return p3;
+}
+
+int main (void)
+{
+  BlobDetector * blob = new BlobDetector();
+  ConvexHullManager * convexHullManager = new ConvexHullManager();
+  MyFreenectDevice * freenect;
+  Freenect::Freenect freeNect;
+  FingerDetector *fingerDetector = new FingerDetector();
+  freenect = &freeNect.createDevice<MyFreenectDevice>(0);
+  cvNamedWindow("sub"); 
+
+  freenect->startStream();
+  freenect->setTilt(-45);
+  freenect->setThresh(true, 0, 500);
+  while (freenect->isKinectRunning())
+    {
+      IplImage * img = freenect->fetchKinectRgbFrame();
+      IplImage * depth = freenect->fetchKinectDepthFrame();
+      IplImage * bg = freenect->getBackgroundImage();
+      IplImage * diff = freenect->subBackgroundToStream();
+      blob->findBlobs(diff, GRAY);
+      CvSeq * contours = blob->getBlobs();
+      int i = 1;
+      while (contours)
+	{
+	  CvRect area = cvBoundingRect(contours, 1);
+	  if (area.width * area.height > 5000)
+	    {
+	      convexHullManager->setContours((CvContour*)contours);
+	      convexHullManager->calcConvexity();
+	      convexHullManager->drawConvexity(diff);
+	      fingerDetector->findFingers(convexHullManager);
+	      CvPoint * convexityPoints = convexHullManager->getConvexityPoints();
+	      CvSeq * convexContour = convexHullManager->getConvexityContour();
+	      std::list<FingerDetector::Coords*> l = fingerDetector->getFingerList();
+	      std::list<FingerDetector::Coords*>::iterator it = l.begin();
+	      while (it != l.end())
+	      	{
+	      	  cvCircle(diff, cvPoint((*it)->x, (*it)->y), 8, CV_RGB(0,0,255), CV_FILLED);
+	      	  ++it;
+		}
+	      CvPoint * contourPoints = convexHullManager->getContourPoints();
+	      for (int j = 0; j < convexHullManager->getHullSize(); ++j)
+		{
+		  CvPoint difference = convexityPoints[j] - contourPoints[j];
+
+		  if (difference.x < 0)
+		    difference.x *=-1;
+		  if (difference.y < 0)
+		    difference.y *= -1;
+		  if (difference.x > 100 && difference.y > 100)
+		    cvLine(diff, convexityPoints[j], contourPoints[j], CV_RGB(255, 255, 0), 5);
+		}
+	    }
+	  contours = contours->h_next;
+	  ++i;
+	}
+      cvShowImage("tmp", freenect->fetchKinectDepthFrame());
+      cvShowImage("sub", diff);
+      if (freenect->getKey() == 27)
+	freenect->setRunning(false);
+    }
+  freenect->stopStream();
+  cvDestroyAllWindows();
+  return 0;
+}
+

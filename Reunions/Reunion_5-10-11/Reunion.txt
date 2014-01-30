@@ -1,0 +1,17 @@
+Premier Suivi 12 Decembre 2011 (pas sur)
+
+Definition des reunions tout les mercredi a 14h00.
+
+A finir pour le 12/10/2011:
+
+Ryan :
+     - Interface clavier virtuelle avec une zone de saisi
+
+Stephen :
+	- Implementation du d'un prototype de drag and drop.
+
+Lucas :
+      - Detection des doigts
+
+Important :
+	  Avoir un trepier pour installer le pico et la Kinect sur un meme ensemble (avant la premiere soutenance)

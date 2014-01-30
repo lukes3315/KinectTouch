@@ -1,0 +1,64 @@
+//
+// main.cpp for ProjLibre in /home/manikk_r//ProjLibre/Qt
+// 
+// Made by ryan manikkam
+// Login   <manikk_r@epitech.net>
+// 
+// Started on  Tue Nov 15 13:28:19 2011 ryan manikkam
+// Last update Mon Nov 21 18:09:39 2011 ryan manikkam
+//
+
+
+#include	<string>
+#include	<iostream>
+#include                <QtCore/QObject>
+#include                <QtCore/QList>
+#include                <QtCore/QTimer>
+#include                <QtGui/QApplication>
+#include                <QtGui/QPushButton>
+#include                <QtGui/QLineEdit>
+#include                <QtGui/QTextEdit>
+#include                <QtGui/QGridLayout>
+#include                <QtGui/QLabel>
+#include                <QtGui/QWidget>
+#include                <QtGui/QTabWidget>
+#include                <QtGui/QTreeWidget>
+#include                <QtGui/QProgressBar>
+#include                <QtGui/QMessageBox>
+#include		<QtCore/qstring.h>
+#include		<QtTest/QtTest>
+#include		<QtTest/qtest.h>
+#include		<QtTest/qtestmouse.h>
+#include                <sys/types.h>
+#include                <sys/socket.h>
+#include                <netdb.h>
+#include                <cstdio>
+#include                "Keyboard.hpp"
+#include                "lib.hpp"
+
+
+
+int		main(int argc, char **argv)
+{
+  QApplication	app(argc, argv);
+  
+  Keyboard K;
+
+ 
+  
+ 
+  K.show();
+  K.findButton(1300, 550);
+  K.findButton(500, 750); 
+ 
+  //QCursor::setPos(660, 800);
+ 
+  //QTestMouseEvent(MouseClick);
+ 
+  //QTest::mouseClick( &K, Qt::LeftButton );
+
+
+
+
+  return (app.exec());
+}

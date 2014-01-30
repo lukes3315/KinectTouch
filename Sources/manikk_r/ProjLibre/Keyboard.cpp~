@@ -1,0 +1,228 @@
+//
+// Mail.cpp for mail in /home/ostert_m//MaT/brouillon/cpp/BMail
+// 
+// Made by matthieu ostertag
+// Login   <ostert_m@epitech.net>
+// 
+// Started on  Sat Jun 25 06:29:12 2011 matthieu ostertag
+// Last update Mon Nov 21 20:54:21 2011 ryan manikkam
+//
+
+#include		<sstream>
+#include		<fstream>
+#include		<iostream>
+
+#include		<sys/types.h>
+#include		<sys/socket.h>
+#include		<netdb.h>
+#include		<QtGui/QPushButton>
+#include		<QtCore/QSignalMapper>
+
+
+#include		<cstdio>
+#include		"Keyboard.hpp"
+#include		"lib.hpp"
+
+
+void			Keyboard::findButton(int x, int y)
+{
+  QString s = texte->toPlainText();
+  QString what;
+  QString tmp;
+
+  std::cout<<"-----------------------Coordoonees des boutons--------------------------------"<<std::endl;
+
+  for(std::list<Button*>::iterator it = list.begin(); it != list.end() ; ++it)
+    {
+      std::cout <<"["<< (*(*it)).getC().toStdString() << "]     "<<(*(*it)).getX()<< " -> " << (*(*it)).getXmax()<<"         "<<(*(*it)).getY()<< " -> "<<(*(*it)).getY() + (*(*it)).getH()<<std::endl;
+      if ((x > (*(*it)).getX() && x < (*(*it)).getXmax()) && (y > (*(*it)).getY() && y < (*(*it)).getY() + (*(*it)).getH()))
+      	{
+	  if ((*(*it)).getC() == "MAJ")
+	    {
+	      MAJ = true;
+	    }
+	  else
+	    what = (*(*it)).getC();
+      	}
+      }
+  std::cout << "CLIC SUR LE BOUTON ["<<what.toStdString()<<"]"<<std::endl;
+  tmp = s + what;
+  texte->setText(tmp);
+}
+
+void			Keyboard::print(const QString& what)
+{
+  QString s = texte->toPlainText();
+  QString tmp = s + what;
+  texte->setText(tmp);
+}
+
+
+Keyboard::Keyboard()
+{
+
+  QSignalMapper *m_sigmapper;
+  //setFixedSize(1680, 980);
+  setFixedSize(800, 600);
+  texte = new QTextEdit(this);
+  MAJ = false;
+
+  texte->move(20, 100);
+  texte->resize(690, 100);
+ 
+
+  /***********************CHARGEMENT DU FICHIER DE CONF****************************/
+
+  // std::ifstream      file("qwerty.ini", std::ios::in);
+  // std::string        line;
+  //  Button	     *newButton;
+  // int		     i = 1;
+  // int		     j = 1;
+  // int		     nb = 1;
+  
+  // if (file.is_open())
+  //   {
+  //     if (file.good())
+  //       {
+  //         while (getline(file, line))
+  //           {
+  // 	      //newButton = new Button((char*)line.c_str());
+  // 	      //connect(newButton, SIGNAL(clicked()), this, SLOT(sendLine()));	      
+  // 	      Blist.push_back(newButton);
+  // 	      //Blist.push_back(new Button((char*)line.c_str()));
+  // 	    }
+  // 	}
+  //   }
+  // else
+  //   std::cout<<"Erreur lors du chargement du clavier : le fichier qwerty.ini est introuvable"<<std::endl;
+
+ 
+  //texte.append("erreur avec processus, Recommencez");
+
+
+  // texte.move(350, 100);
+  // texte.resize(1160, 300);
+
+  /**********************************************************************************/
+
+  Button *bouton1 = new Button((QString)"1", 40, 200, this);
+  list.push_back(bouton1);
+  Button *bouton2 = new Button((QString)"2", 100, 200, this);
+  list.push_back(bouton2);
+  Button *bouton3 = new Button((QString)"3", 160, 200, this);
+  list.push_back(bouton3);
+  Button *bouton4 = new Button((QString)"4", 220, 200, this);
+  list.push_back(bouton4);
+  Button *bouton5 = new Button((QString)"5", 280, 200, this);
+  list.push_back(bouton5);
+  Button *bouton6 = new Button((QString)"6", 340, 200, this);
+  list.push_back(bouton6);
+  Button *bouton7 = new Button((QString)"7", 400, 200, this);
+  list.push_back(bouton7);
+  Button *bouton8 = new Button((QString)"8", 460, 200, this);
+  list.push_back(bouton8);
+  Button *bouton9 = new Button((QString)"9", 520, 200, this);
+  list.push_back(bouton9);
+  Button *bouton0 = new Button((QString)"0", 580, 200, this);
+  list.push_back(bouton0);
+  Button *boutonBack = new Button((QString)"baksp", 640, 200, this);
+  list.push_back(boutonBack);
+
+
+
+  // 2 eme ligne                                                                          
+
+
+  Button *boutonQ = new Button((QString)"Q", 70, 260, this);
+  list.push_back(boutonQ);
+  Button *boutonW = new Button((QString)"W", 130, 260, this);
+  list.push_back(boutonW);
+  Button *boutonE = new Button((QString)"E", 190, 260, this);
+  list.push_back(boutonE);
+  Button *boutonR = new Button((QString)"R", 250, 260, this);
+  list.push_back(boutonR);
+  Button *boutonT = new Button((QString)"T", 310, 260, this);
+  list.push_back(boutonT);
+  Button *boutonY = new Button((QString)"Y", 370, 260, this);
+  list.push_back(boutonY);
+  Button *boutonU = new Button((QString)"U", 430, 260, this);
+  list.push_back(boutonU);
+  Button *boutonI = new Button((QString)"I", 490, 260, this);
+  list.push_back(boutonI);
+  Button *boutonO = new Button((QString)"O", 550, 260, this);
+  list.push_back(boutonO);
+  Button *boutonP = new Button((QString)"P", 610, 260, this);
+  list.push_back(boutonP);
+
+  // 3 eme ligne                                                                             
+
+  Button *boutonA = new Button((QString)"A", 100, 320, this);
+  list.push_back(boutonA);
+  Button *boutonS = new Button((QString)"S", 160, 320, this);
+  list.push_back(boutonS);
+  Button *boutonD = new Button((QString)"D", 220, 320, this);
+  list.push_back(boutonD);
+  Button *boutonF = new Button((QString)"F", 280, 320, this);
+  list.push_back(boutonF);
+  Button *boutonG = new Button((QString)"G", 340, 320, this);
+  list.push_back(boutonG);
+  Button *boutonH = new Button((QString)"H", 400, 320, this);
+  list.push_back(boutonH);
+  Button *boutonJ = new Button((QString)"J", 460, 320, this);
+  list.push_back(boutonJ);
+  Button *boutonK = new Button((QString)"K", 520, 320, this);
+  list.push_back(boutonK);
+  Button *boutonL = new Button((QString)"L", 580, 320, this);
+  list.push_back(boutonL);
+  Button *boutonPV = new Button((QString)";", 640, 320, this);
+  list.push_back(boutonPV);
+  // Button *boutonQuo = new Button((QString)"'", 740, 320, this);
+  // list.push_back(boutonQuo);
+  Button *boutonEnter = new Button((QString)"enter", 700, 320, this);
+  list.push_back(boutonEnter);
+
+  // 4 eme ligne                                                                             
+
+  Button *boutonZ = new Button((QString)"Z", 130, 380, this);
+  list.push_back(boutonZ);
+  Button *boutonX = new Button((QString)"X", 190, 380, this);
+  list.push_back(boutonX);
+  Button *boutonC = new Button((QString)"C", 250, 380, this);
+  list.push_back(boutonC);
+  Button *boutonV = new Button((QString)"V", 310, 380, this);
+  list.push_back(boutonV);
+  Button *boutonB = new Button((QString)"B", 370, 380, this);
+  list.push_back(boutonB);
+  Button *boutonN = new Button((QString)"N", 430, 380, this);
+  list.push_back(boutonN);
+  Button *boutonM = new Button((QString)"M", 490, 380, this);
+  list.push_back(boutonM);
+  Button *boutonVir = new Button((QString)",", 550, 380, this);
+  list.push_back(boutonVir);
+  Button *boutonPoi = new Button((QString)".", 610, 380, this);
+  list.push_back(boutonPoi);
+  Button *boutonPI = new Button((QString)"?", 670, 380, this);
+  list.push_back(boutonPI);
+  Button *boutonPE = new Button((QString)"!", 730, 380, this);
+  list.push_back(boutonPE);
+  Button *boutonMAJ = new Button((QString)"MAJ", 40, 380, this);
+  list.push_back(boutonMAJ);
+  Button *bouton = new Button((QString)" ", 250, 440, this);
+  list.push_back(bouton);
+
+
+ // for(std::list<Button*>::iterator it = list.begin(); it != list.end() ; ++it)
+ //    {
+ //      std::cout << ((*it)->getC()).toStdString() << std::endl;     
+ //    }
+ //findButton(0,0);
+
+  for(std::list<Button*>::iterator it = list.begin(); it != list.end() ; ++it)
+    {
+     
+      m_sigmapper = new QSignalMapper(this);  
+      connect((*(*it)).bouton, SIGNAL(clicked()),m_sigmapper, SLOT(map()));
+      m_sigmapper->setMapping((*(*it)).bouton, (*(*it)).getC());
+      connect(m_sigmapper, SIGNAL(mapped(QString)), this, SLOT(print(const QString&)));
+    }
+}
